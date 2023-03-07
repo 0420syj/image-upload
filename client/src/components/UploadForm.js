@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './UploadForm.css';
 
 const UploadForm = () => {
     const [file, setFile] = useState(null);
@@ -26,11 +27,13 @@ const UploadForm = () => {
 
     return (
         <form onSubmit={onSubmit}>
-            <label htmlFor="image">{fileName}</label>
-            <input id="image" type="file" onChange={(event) =>
-                imageSelectHandler(event)
-            } />
-            <button type="submit">제출</button>
+            <div className="file-dropper">
+                {fileName}
+                <input id="image" type="file" onChange={(event) =>
+                    imageSelectHandler(event)
+                } />
+            </div>
+            <button className="submit-button" type="submit">제출</button>
         </form>
     );
 };
