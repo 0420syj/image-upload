@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './UploadForm.css';
+import { toast } from 'react-toastify';
 
 const UploadForm = () => {
     const [file, setFile] = useState(null);
@@ -19,10 +20,13 @@ const UploadForm = () => {
         fetch('/upload', {
             method: 'POST',
             body: formData,
-        }).then((response) => response.json())
-            .then((response) => {
-                console.log(response);
-            });
+        }).then((response) => {
+            if (response.status === 200) {
+                toast.success('이미지가 업로드 되었습니다.');
+            } else {
+                toast.error('이미지 업로드에 실패했습니다.');
+            }
+        });
     };
 
     return (
